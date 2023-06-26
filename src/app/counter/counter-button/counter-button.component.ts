@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { decrement, increment, reset } from 'src/app/counter/state/counter.actions';
+import { changeChannelName, decrement, increment, reset } from 'src/app/counter/state/counter.actions';
 import { CounterState } from 'src/app/counter/state/counter.state';
 
 @Component({
@@ -30,6 +30,10 @@ export class CounterButtonComponent implements OnInit {
   onReset() {
     // this.reset.emit()
     this.store.dispatch(reset())
+  }
+
+  onChannelChange() {
+    this.store.dispatch(changeChannelName())
   }
 
 }
