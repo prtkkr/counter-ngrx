@@ -8,13 +8,13 @@ import { AppComponent } from 'src/app/app.component';
 import { environment } from 'src/environments/environment';
 import { HomeComponent } from 'src/app/home/home.component';
 import { AppRoutingModule } from 'src/app/app-routing.module';
-import { counterReducer } from 'src/app/counter/state/counter.reducer';
 import { CounterComponent } from 'src/app/counter/counter/counter.component';
 import { PostListComponent } from 'src/app/posts/post-list/post-list.component';
 import { HeaderComponent } from 'src/app/shared/components/header/header.component';
 import { CustomInputComponent } from 'src/app/counter/custom-input/custom-input.component';
 import { CounterButtonComponent } from 'src/app/counter/counter-button/counter-button.component';
 import { CounterOutputComponent } from 'src/app/counter/counter-output/counter-output.component';
+import { AppReducer } from 'src/app/store/app.state';
 
 @NgModule({
   declarations: [
@@ -25,16 +25,19 @@ import { CounterOutputComponent } from 'src/app/counter/counter-output/counter-o
     CustomInputComponent,
     HomeComponent,
     HeaderComponent,
-    PostListComponent
+    PostListComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    StoreModule.forRoot({ counter: counterReducer }),
+    StoreModule.forRoot(AppReducer),
     AppRoutingModule,
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      logOnly: environment.production,
+    }),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
