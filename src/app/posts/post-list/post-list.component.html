@@ -1,6 +1,11 @@
 <div class="row">
-  <div class="col-md-12">
-    <h3>Post List</h3>
+  <div class="col-md-8">
+    <h3 class="text-center">Post List</h3>
+    <div class="d-flex flex-row-reverse">
+      <button class="btn btn-primary" [routerLink]="['/posts/add']">
+        Add Post
+      </button>
+    </div>
 
     <table class="table table-striped">
       <thead>
@@ -15,8 +20,12 @@
           <td>{{ po.id }}</td>
           <td>{{ po.title }}</td>
           <td>{{ po.description }}</td>
+          <td><a class="btn btn-link" [routerLink]="['edit', po.id]">Update</a></td>
         </tr>
       </tbody>
     </table>
+  </div>
+  <div class="col-md-4">
+    <router-outlet></router-outlet>
   </div>
 </div>
