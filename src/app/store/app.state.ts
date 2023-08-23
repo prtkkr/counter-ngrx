@@ -8,7 +8,7 @@ export interface AppState {
   posts: PostState;
 }
 
-export const AppReducer = {
-  counter: counterReducer,
-  posts: PostsReducer,
-};
+// export const AppReducer = {
+//   counter: counterReducer,
+//   posts: PostsReducer,
+// };
