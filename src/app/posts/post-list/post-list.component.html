@@ -13,6 +13,7 @@
           <th>Id</th>
           <th>Title</th>
           <th>Description</th>
+          <th>Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -20,7 +21,10 @@
           <td>{{ po.id }}</td>
           <td>{{ po.title }}</td>
           <td>{{ po.description }}</td>
-          <td><a class="btn btn-link" [routerLink]="['edit', po.id]">Update</a></td>
+          <td>
+            <a class="btn btn-link" [routerLink]="['edit', po.id]">Update</a>
+            <a class="btn btn-link" (click)="onDeletePost(po.id)">Delete</a>
+          </td>
         </tr>
       </tbody>
     </table>

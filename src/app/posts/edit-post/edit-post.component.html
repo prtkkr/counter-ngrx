@@ -1,0 +1,50 @@
+<div class="row">
+  <div class="col-md-12">
+    <h3>Update Post</h3>
+    <form [formGroup]="editForm" (ngSubmit)="onPostUpdate()">
+      <!-- Title -->
+      <div class="mb-3">
+        <label for="">Title</label>
+        <input type="text" class="form-control" formControlName="title" />
+        <div
+          *ngIf="
+            editForm.get('title')?.touched && !editForm.get('title')?.valid
+          "
+        >
+          <div
+            *ngIf="editForm.get('title')?.errors?.['required']"
+            class="text-danger"
+          >
+            Title is required
+          </div>
+          <div
+            *ngIf="editForm.get('title')?.errors?.['minlength']"
+            class="text-danger"
+          >
+            Minimum 6 characters are required
+          </div>
+        </div>
+      </div>
+      <!-- Description -->
+      <div class="mb-3">
+        <label for="">Description</label>
+        <textarea
+          type="text"
+          class="form-control"
+          formControlName="description"
+        ></textarea>
+        <div class="text-danger">{{ validateDescription() }}</div>
+      </div>
+      <!-- Submit -->
+      <div>
+        <button
+          class="btn btn-primary"
+          type="submit"
+          [disabled]="!editForm.valid"
+        >
+          Update Post
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
