@@ -10,7 +10,6 @@ export const getPosts = createSelector(getPostsInitialState, (state) => {
 // export const getPostById = createSelector(
 //   getPostsInitialState,
 //   (state: PostState, props: any) => {
-//     debugger;
 //     return state.posts.find((x) => x.id == props.id);
 //   }
 // );
