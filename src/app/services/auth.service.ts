@@ -21,6 +21,15 @@ export class AuthService {
     });
   }
 
+  signUp(email: string, password: string): Observable<AuthResponseData> {
+    const url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${environment.FIREBASE_API_KEY}`;
+    return this.http.post<AuthResponseData>(url, {
+      email,
+      password,
+      returnSecureToken: true,
+    });
+  }
+
   formatUser(data: AuthResponseData) {
     const expirationDate = new Date(
       new Date().getTime() + +data.expiresIn * 1000
@@ -40,6 +49,12 @@ export class AuthService {
         return 'Email not found';
       case 'INVALID_PASSWORD':
         return 'Password is invalid';
+      case 'EMAIL_EXISTS':
+        return 'Email already exists';
+      case 'OPERATION_NOT_ALLOWED':
+        return 'Password sign-in is disabled for this project';
+      case 'TOO_MANY_ATTEMPTS_TRY_LATER':
+        return 'All requests from this device have been blocked due to unusual activity. Please try again later.';
       default:
         return 'Unknown error occured. Please try again.';
     }

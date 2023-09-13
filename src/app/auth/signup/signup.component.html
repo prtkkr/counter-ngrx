@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <h3><strong>Sign Up</strong></h3>
+      <hr />
+      <form [formGroup]="signupForm" (ngSubmit)="onSignUp()">
+        <div class="mb-3">
+          <label for="email">Email</label>
+          <input type="email" class="form-control" formControlName="email" />
+          <div class="text-danger">{{ validateEmail() }}</div>
+        </div>
+        <div class="mb-3">
+          <label for="email">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            formControlName="password"
+          />
+          <div class="text-danger">{{ validatePassword() }}</div>
+        </div>
+        <div class="mb-3">
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
