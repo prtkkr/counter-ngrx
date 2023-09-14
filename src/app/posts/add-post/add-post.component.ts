@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 
 import { Post } from 'src/app/models/post.model';
 import { AppState } from 'src/app/store/app.state';
-import { addPost } from '../state/posts.action';
+import { addPost } from 'src/app/posts/state/posts.action';
 
 @Component({
   selector: 'app-add-post',

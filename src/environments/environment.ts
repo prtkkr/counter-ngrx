@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   FIREBASE_API_KEY: 'AIzaSyCW2nxgBGGR_jIKCtQMlhGvJpI7c5Ev9LE',
+  API_URL: `https://fir-auth-d77bb-default-rtdb.asia-southeast1.firebasedatabase.app/posts.json`,
 };
 
 /*

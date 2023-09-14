@@ -2,12 +2,14 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 
 import { PostListComponent } from 'src/app/posts/post-list/post-list.component';
 import { AddPostComponent } from 'src/app/posts/add-post/add-post.component';
 import { EditPostComponent } from 'src/app/posts/edit-post/edit-post.component';
-import { StoreModule } from '@ngrx/store';
-import { PostsReducer } from './state/posts.reducer';
+import { PostsReducer } from 'src/app/posts/state/posts.reducer';
+import { PostsEffects } from 'src/app/posts/state/posts.effects';
 
 const routes: Routes = [
   {
@@ -33,6 +35,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     RouterModule.forChild(routes),
     StoreModule.forFeature('posts', PostsReducer),
+    EffectsModule.forFeature([PostsEffects]),
   ],
 })
 export class PostsModule {}

@@ -82,6 +82,6 @@ export class EditPostComponent implements OnInit, OnDestroy {
     };
     this.store.dispatch(updatePost({ post: this.editForm.value }));
     // Navigate To Post Page
-    this.router.navigate(['posts']);
+    // this.router.navigate(['posts']);
   }
 }

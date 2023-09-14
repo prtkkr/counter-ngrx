@@ -5,8 +5,13 @@
     <form [formGroup]="addForm" (ngSubmit)="onAddPost()">
       <!-- Title -->
       <div class="mb-3">
-        <label for="">Title</label>
-        <input type="text" class="form-control" formControlName="title" />
+        <label for="title">Title</label>
+        <input
+          id="title"
+          type="text"
+          class="form-control"
+          formControlName="title"
+        />
         <div
           *ngIf="addForm.get('title')?.touched && !addForm.get('title')?.valid"
         >
@@ -26,8 +31,9 @@
       </div>
       <!-- Description -->
       <div class="mb-3">
-        <label for="">Description</label>
+        <label for="description">Description</label>
         <textarea
+          id="description"
           type="text"
           class="form-control"
           formControlName="description"
