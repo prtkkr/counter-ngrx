@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { map, mergeMap, tap } from 'rxjs';
+import { filter, map, mergeMap, switchMap } from 'rxjs';
 import { Store } from '@ngrx/store';
 
 import { AppState } from 'src/app/store/app.state';
 import { PostsService } from 'src/app/services/posts.service';
-import { setLoadingSpinner } from 'src/app/store/shared.action';
 import {
   addPost,
   addPostSuccess,
@@ -18,6 +17,7 @@ import {
 } from 'src/app/posts/state/posts.action';
 import { Post } from 'src/app/models/post.model';
 import { Router } from '@angular/router';
+import { ROUTER_NAVIGATION, RouterNavigatedAction } from '@ngrx/router-store';
 
 @Injectable()
 export class PostsEffects {
@@ -92,4 +92,24 @@ export class PostsEffects {
     },
     { dispatch: false }
   );
+
+  getSinglePost$ = createEffect((): any => {
+    return this.actions$.pipe(
+      ofType(ROUTER_NAVIGATION),
+      filter((r: RouterNavigatedAction) => {
+        return r.payload.routerState.url.startsWith('/posts/detail');
+      }),
+      map((r: RouterNavigatedAction | any) => {
+        return r.payload.routerState['params']['id'];
+      }),
+      switchMap((id) => {
+        return this.postService.getSinglePost(id).pipe(
+          map((post) => {
+            const data = [{ ...post, id }];
+            return loadPostsSuccess({ post: data });
+          })
+        );
+      })
+    );
+  });
 }

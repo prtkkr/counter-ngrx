@@ -10,6 +10,7 @@ import { AddPostComponent } from 'src/app/posts/add-post/add-post.component';
 import { EditPostComponent } from 'src/app/posts/edit-post/edit-post.component';
 import { PostsReducer } from 'src/app/posts/state/posts.reducer';
 import { PostsEffects } from 'src/app/posts/state/posts.effects';
+import { PostDetailComponent } from './post-detail/post-detail.component';
 
 const routes: Routes = [
   {
@@ -29,7 +30,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [PostListComponent, AddPostComponent, EditPostComponent],
+  declarations: [PostListComponent, AddPostComponent, EditPostComponent, PostDetailComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,

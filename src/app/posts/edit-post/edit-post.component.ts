@@ -1,12 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 
 import { AppState } from 'src/app/store/app.state';
 import { getPostById } from 'src/app/posts/state/posts.selector';
-import { Post } from 'src/app/models/post.model';
 import { updatePost } from 'src/app/posts/state/posts.action';
 
 @Component({
@@ -16,13 +14,10 @@ import { updatePost } from 'src/app/posts/state/posts.action';
 })
 export class EditPostComponent implements OnInit, OnDestroy {
   editForm!: FormGroup;
-  postData!: Post;
   postSubscription!: Subscription;
 
   constructor(
     private formBuilder: FormBuilder,
-    private route: ActivatedRoute,
-    private router: Router,
     private store: Store<AppState>
   ) {}
 
@@ -43,16 +38,30 @@ export class EditPostComponent implements OnInit, OnDestroy {
         Validators.compose([Validators.required, Validators.minLength(10)]),
       ],
     });
-    // Get Data from URL
-    this.route.params.subscribe((params) => {
-      const id = params['id'];
-      this.postSubscription = this.store
-        .select(getPostById(id))
-        .subscribe((data: any) => {
-          this.postData = data;
-          this.createForm();
-        });
-    });
+    /*********************************************
+     * Since Router Store is used *
+     * No need to get route info using below logic*
+    * this.route.params.subscribe((params) => { *
+    *   const id = params['id']; *
+    *   this.postSubscription = this.store *
+    *     .select(getPostById(id)) *
+    *     .subscribe((data: any) => { *
+    *       this.postData = data; *
+    *       this.createForm(); *
+    *     }); *
+    * }); *
+    /***************************** */
+    this.postSubscription = this.store
+      .select(getPostById)
+      .subscribe((post: any) => {
+        if (post) {
+          this.editForm.patchValue({
+            id: post.id,
+            title: post.title,
+            description: post.description,
+          });
+        }
+      });
   }
 
   validateDescription() {
@@ -66,20 +75,18 @@ export class EditPostComponent implements OnInit, OnDestroy {
     return null;
   }
 
-  createForm() {
-    this.editForm.setValue(this.postData);
-  }
-
   onPostUpdate() {
-    if (!this.editForm.valid) return;
+    if (!this.editForm.valid) {
+      return;
+    }
     // Get Required Data
     const { id, title, description } = this.editForm.value;
     // Dispatch Action
-    const updatedPostData: Post = {
-      id: id,
-      title: title,
-      description: description,
-    };
+    // const updatedPostData: Post = {
+    //   id: id,
+    //   title: title,
+    //   description: description,
+    // };
     this.store.dispatch(updatePost({ post: this.editForm.value }));
     // Navigate To Post Page
     // this.router.navigate(['posts']);

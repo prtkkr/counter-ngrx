@@ -40,4 +40,9 @@ export class PostsService {
     const url = `https://fir-auth-d77bb-default-rtdb.asia-southeast1.firebasedatabase.app/posts`;
     return this.http.delete(`${url}/${id}.json`);
   }
+
+  getSinglePost(id: string): Observable<Post> {
+    const url = `https://fir-auth-d77bb-default-rtdb.asia-southeast1.firebasedatabase.app/posts`;
+    return this.http.get<Post>(`${url}/${id}.json`);
+  }
 }
