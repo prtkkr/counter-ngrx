@@ -6,7 +6,6 @@ import { Post } from 'src/app/models/post.model';
 import { AppState } from 'src/app/store/app.state';
 import { getPosts } from 'src/app/posts/state/posts.selector';
 import { deletePost, loadPosts } from 'src/app/posts/state/posts.action';
-import { setLoadingSpinner } from 'src/app/store/shared.action';
 
 @Component({
   selector: 'app-post-list',

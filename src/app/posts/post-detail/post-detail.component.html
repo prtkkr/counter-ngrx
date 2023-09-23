@@ -1,8 +1,8 @@
-<div class="card mt-2">
+<div class="card mt-3">
   <div class="card-header"><strong>Post Details</strong></div>
   <div class="card-body">
-    <h5 class="card-title">{{ (postData | async)?.id }}</h5>
-    <p class="card-text"><b> Title: </b> {{ (postData | async)?.title }}</p>
+    <h5 class="card-title">{{ (postData | async)?.title }}</h5>
+    <p class="card-text"><b> Id: </b> {{ (postData | async)?.id }}</p>
     <p class="card-text">
       <b>Description:</b> {{ (postData | async)?.description }}
     </p>
