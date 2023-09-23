@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/store/app.state';
 import { signUpStart } from '../state/auth.actions';
@@ -11,10 +11,10 @@ import { setLoadingSpinner } from 'src/app/store/shared.action';
   styleUrls: ['./signup.component.css'],
 })
 export class SignupComponent implements OnInit {
-  signupForm!: UntypedFormGroup;
+  signupForm!: FormGroup;
 
   constructor(
-    private formBuilder: UntypedFormBuilder,
+    private formBuilder: FormBuilder,
     private store: Store<AppState>
   ) {}
 

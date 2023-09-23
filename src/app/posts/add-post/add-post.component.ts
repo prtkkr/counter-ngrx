@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 
 import { Post } from 'src/app/models/post.model';
@@ -12,17 +12,17 @@ import { addPost } from 'src/app/posts/state/posts.action';
   styleUrls: ['./add-post.component.css'],
 })
 export class AddPostComponent implements OnInit {
-  addForm!: UntypedFormGroup;
+  addForm!: FormGroup;
 
   constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {
-    this.addForm = new UntypedFormGroup({
-      title: new UntypedFormControl(null, [
+    this.addForm = new FormGroup({
+      title: new FormControl(null, [
         Validators.required,
         Validators.minLength(6),
       ]),
-      description: new UntypedFormControl(null, [
+      description: new FormControl(null, [
         Validators.required,
         Validators.minLength(10),
       ]),
