@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 
@@ -13,11 +13,11 @@ import { updatePost } from 'src/app/posts/state/posts.action';
   styleUrls: ['./edit-post.component.css'],
 })
 export class EditPostComponent implements OnInit, OnDestroy {
-  editForm!: FormGroup;
+  editForm!: UntypedFormGroup;
   postSubscription!: Subscription;
 
   constructor(
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private store: Store<AppState>
   ) {}
 
